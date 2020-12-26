@@ -1,4 +1,11 @@
 {
+    "name": "amir/query-builder",
+    "authors": [
+        {
+            "name": "Amir Salehi",
+            "email": "isamirsalehi@gmail.com"
+        }
+    ],
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     }
