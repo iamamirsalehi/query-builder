@@ -8,13 +8,22 @@ use Src\Databases\Connections\PDODatabaseConnection;
 
 class DBTest extends TestCase
 {
-    public function testIfDBConstructorGetPDODatabaseConnection()
+
+    public function testIfTableMethodSetTableName()
     {
-        $database_connection = new PDODatabaseConnection($this->getConfig());
+        DB::table('mytable');
 
-        $db = new DB($database_connection->connect());
+        $this->assertEquals(DB::getTableName(), 'mytable');
+    }
+    
+    public function testIfGetInstanceReturnAnIntanceOfTheCLass()
+    {
+        $this->assertIsObject(DB::getInstance());
+    }
 
-        $this->assertIsObject($db);
+    public function testIfAllMethodReturnAllData()
+    {
+        $this->assertIsArray(DB::table('mytable')->all());
     }
 
     private function getConfig()
