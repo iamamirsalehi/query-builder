@@ -22,8 +22,8 @@ class PDODatabaseConnection implements DatabaseConnectionInterface
     {
         try{
             $this->pdoConnection = new PDO("mysql:host={$this->config['DB_HOST']};dbname={$this->config['DB_NAME']}", 
-            $this->config['DB_USER'], 
-            $this->config['DB_PASS']);
+                                            $this->config['DB_USER'], 
+                                            $this->config['DB_PASS']);
         }catch(PDOException $e)
         {
             throw new PDOConnectionException($e->getMessage());
