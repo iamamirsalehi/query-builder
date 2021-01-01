@@ -20,7 +20,7 @@ class HelpersFunctionTest extends TestCase
 
     public function testIfGetRealPathMethodReturnsARealPath()
     {
-        $real_path = Helper::getRealPath('config', 'database');
+        $real_path = Helper::getRealPath('Configs', 'database');
 
         $this->assertNotNull($real_path);
         $this->assertIsString($real_path);

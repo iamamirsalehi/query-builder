@@ -9,7 +9,7 @@ class Helper
 {
     public static function getConfig(string $file_name, string $key): array
     {
-        $filePath = self::getRealPath('config', $file_name);
+        $filePath = self::getRealPath('Configs', $file_name);
 
         if (!file_exists($filePath))
             throw new FileNotFoundException('Config file not found!');
