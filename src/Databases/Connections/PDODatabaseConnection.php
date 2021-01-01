@@ -5,6 +5,7 @@ namespace Src\Databases\Connections;
 use PDO;
 use PDOException;
 use Src\Exceptions\PDOConnectionException;
+use Src\Contracts\DatabaseConnectionInterface;
 
 class PDODatabaseConnection implements DatabaseConnectionInterface
 {
@@ -33,6 +34,6 @@ class PDODatabaseConnection implements DatabaseConnectionInterface
 
     public function getConnection()
     {
-        return $this->getConnection;
+        return $this->pdoConnection;
     }
 }

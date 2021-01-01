@@ -7,6 +7,7 @@ use Src\Utilities\Helper;
 use PHPUnit\Framework\TestCase;
 use Src\Exceptions\WrongConfigDataException;
 use Src\Databases\Connections\PDODatabaseConnection;
+use Src\Exceptions\PDOConnectionException;
 
 class PDODatabaseConnectionTest extends TestCase
 {
@@ -18,12 +19,19 @@ class PDODatabaseConnectionTest extends TestCase
 
         $pdoConnection = $pdoDatabaseConnection->connect()->getConnection();
 
-
+        $this->assertNotNull($pdoConnection);
         $this->assertIsObject($pdoConnection);
-        $this->assertEquals($pdoConnection['DB_HOST'], $database_config['DB_HOST']);
-        $this->assertEquals($pdoConnection['DB_NAME'], $database_config['DB_NAME']);
-        $this->assertEquals($pdoConnection['DB_USER'], $database_config['DB_USER']);
-        $this->assertEquals($pdoConnection['DB_PASS'], $database_config['DB_PASS']);
+    }
+
+    public function testIfConnectionMethodDoesNotGetCorrectDatabaseConfigAndReturnsAnExceptionForIt()
+    {
+        $this->expectException(PDOConnectionException::class);
+
+        $database_config = $this->getConfig();
+
+        $database_config['DB_NAME'] = 'not-existed-database';
+
+        $pdoDatabaseConnection = new PDODatabaseConnection($database_config);
     }
 
     private function getConfig()
