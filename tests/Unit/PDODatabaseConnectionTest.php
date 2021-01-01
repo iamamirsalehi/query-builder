@@ -3,10 +3,10 @@
 namespace Tests\Unit;
 
 
-use PHPUnit\Framework\TestCase;
-use Src\Contracts\PDODatabaseConnection;
-use Src\Exceptions\WrongConfigDataException;
 use Src\Utilities\Helper;
+use PHPUnit\Framework\TestCase;
+use Src\Exceptions\WrongConfigDataException;
+use Src\Databases\Connections\PDODatabaseConnection;
 
 class PDODatabaseConnectionTest extends TestCase
 {

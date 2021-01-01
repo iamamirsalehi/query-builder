@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Contracts;
+namespace Src\Databases\Connections;
 
 use PDO;
 use PDOException;
