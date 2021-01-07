@@ -26,6 +26,18 @@ class DBTest extends TestCase
         $this->assertIsArray(DB::table('mytable')->all());
     }
 
+    public function testIfItCanInsertData()
+    {
+        $data = [
+            'name' => 'amir'
+        ];
+
+        $inserted_result = DB::table('mytable')->insert($data);
+
+        $this->assertNotNull($inserted_result);
+        $this->assertIsNumeric($inserted_result);
+    }
+
     private function getConfig()
     {
         return Helper::getConfig('database', 'mysql');

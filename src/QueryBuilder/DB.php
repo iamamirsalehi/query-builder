@@ -33,9 +33,40 @@ class DB
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function insert(array $data)
+    {
+        $colunms =  implode(',',  array_keys($data));
+
+        $question_mark_per_data = self::getQuestionMarks($data);
+
+        $sql = 'INSERT INTO ' . self::$table . ' (' . $colunms . ') VALUES (' . $question_mark_per_data . ') ';
+
+        $stmt  = self::$connection->prepare($sql);
+
+        $stmt->execute(array_values($data));
+
+        return self::$connection->lastInsertId();
+    }
+
     public static function getTableName()
     {
         return self::$table;
+    }
+
+    public static function getQuestionMarks(array $data)
+    {
+        $question_mark_per_data = '';
+
+        foreach($data as $key => $value){
+            if(array_key_last($data) == $key)
+            {
+                $question_mark_per_data .= '? ';
+                break;
+            }
+            $question_mark_per_data .= '?, ';
+        }
+
+        return $question_mark_per_data;
     }
 
     public static function getInstance()
